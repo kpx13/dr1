@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <div id="breadcrumb">
+        <ul>
+            <li class="home"><a href="/">Главная</a></li>
+            <li>{{ title }}</li>
+        </ul>
+    </div>
+    <h1>{{ title }}</h1>
+    {{ content|safe }}
+{% endblock %}
