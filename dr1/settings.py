@@ -70,12 +70,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
-    'django.core.context_processors.static',
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
-    'django_authopenid.context_processors.authopenid',
-    'messages.context_processors.inbox',
-    'djangobb_forum.context_processors.forum_settings',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -84,11 +80,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django_authopenid.middleware.OpenIDMiddleware',
-    'django.middleware.cache.FetchFromCacheMiddleware',
-    'django.middleware.transaction.TransactionMiddleware',
-    'djangobb_forum.middleware.LastLoginMiddleware',
-    'djangobb_forum.middleware.UsersOnline',
 )
 
 ROOT_URLCONF = 'dr1.urls'
@@ -111,7 +102,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.humanize',
     'ckeditor',
     'filebrowser',
     'livesettings',
@@ -121,13 +111,6 @@ INSTALLED_APPS = (
     'feincms',
     'mptt',
     'feincms.module.medialibrary',
-    
-    'registration',
-    'pagination',
-    'django_authopenid',
-    'djangobb_forum',
-    'haystack',
-    'messages',
     
     'pages',
     'news',
@@ -187,30 +170,6 @@ EMAIL_HOST_PASSWORD = 'noreply13'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-# Haystack settings
-HAYSTACK_CONNECTIONS = {
-    'default': {
-    'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': os.path.join(PROJECT_ROOT, 'djangobb_index'),
-        'STORAGE': 'file',
-        'POST_LIMIT': 128 * 1024 * 1024,
-        'INCLUDE_SPELLING': True,
-        'BATCH_SIZE': 100,
-        'EXCLUDED_INDEXES': ['thirdpartyapp.search_indexes.BarIndex'],
-    }
-}
-#HAYSTACK_SITECONF = 'search_sites'
-#HAYSTACK_SEARCH_ENGINE = 'whoosh'
-#HAYSTACK_WHOOSH_PATH = os.path.join(PROJECT_ROOT, 'djangobb_index')
-
-# Account settings
-ACCOUNT_ACTIVATION_DAYS = 10
-LOGIN_REDIRECT_URL = '/forum/'
-LOGIN_URL = '/forum/account/signin/'
-
-#Cache settings
-CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
 
 try:
     from dev import *
